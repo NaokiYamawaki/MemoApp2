@@ -1,5 +1,5 @@
 import React from 'react';
-//import MemoListScreen from './src/screens/MemoListScreen';
+import MemoListScreen from './src/screens/MemoListScreen';
 //import MemoDetailScreen from './src/screens/MemoDetailCsreen';
 //import MemoEditScreen from './src/screens/MemoEditScreen';
 //import MemoCreateScreen from './src/screens/MemoCreateScreen';
@@ -7,7 +7,7 @@ import React from 'react';
 import SignUpScreen from './src/screens/SignUpScreen';
 export default function App() {
   return (
-    <SignUpScreen />
+    <MemoListScreen />
   );
 }
 
