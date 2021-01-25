@@ -13,16 +13,19 @@ import SignUpScreen from './src/screens/SignUpScreen';
 
 import {firebaseConfig} from './env';
 
+require('firebase/firestore');
+
 const Stack = createStackNavigator();
+
+if (firebase.apps.length === 0){
+    firebase.initializeApp(firebaseConfig);
+  }
 
 export default function App(props) {
   const {name} = props;
 
 
 
-  if (firebase.apps.length === 0){
-    firebase.initializeApp(firebaseConfig);
-  }
 
   return (
     <NavigationContainer>
