@@ -5,7 +5,7 @@ import {
 import firebase from 'firebase';
 
 import Button from '../components/Button';
-
+import Loading from '../components/Loading';
 export default function LogInScreen(props){
 
     const {navigation} = props;
@@ -21,12 +21,17 @@ export default function LogInScreen(props){
                 });
             }
         });
+        setLoading(false);
             return unsubscribe;
     }, []);
+    const [isLoading, setLoading] = useState(true);
+
 
     function handlePress(){
+        setLoading(true);
         firebase.auth().signInWithEmailAndPassword(email, passward)
             .then((userCredential) =>{
+                
                 const {user} = userCredential;
                 console.log(user.uid);
                 navigation.reset({
@@ -36,13 +41,17 @@ export default function LogInScreen(props){
             })
             .catch((error) =>{
                 Alert.alert(error.code);
+            })
+            .then(()=>{
+                setLoading(false);
             });
     }
 
     return(
         <View style={styles.container}>
+            <Loading isLoading={isLoading} />
             <View style={styles.inner}>
-                <View >
+                <View>
                     <Text style={styles.title}>Log In</Text>
                 </View>
                 <View>
